@@ -10,6 +10,8 @@ class PlaylistsController < ApplicationController
   # GET /playlists/1
   # GET /playlists/1.json
   def show
+    @song = Song.new
+    @playlist_songs = @playlist.songs
   end
 
   # GET /playlists/new
@@ -25,7 +27,7 @@ class PlaylistsController < ApplicationController
   # POST /playlists.json
   def create
     @playlist = Playlist.new(playlist_params)
-    byebug
+
     respond_to do |format|
       if @playlist.save
         format.html { redirect_to @playlist, notice: 'Playlist creada' }
